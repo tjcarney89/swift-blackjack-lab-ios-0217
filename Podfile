@@ -7,9 +7,9 @@ target 'swift-blackjack-lab' do
 
   # Pods for swift-blackjack-lab
   def testing_pods
-    pod 'Quick', '~> 0.9'
-    pod 'Nimble', '~> 4.1'
-  end
+    pod 'Nimble', git: 'https://github.com/Quick/Nimble.git'
+    pod 'Quick', git: 'https://github.com/Quick/Quick.git'
+    end
 
   target 'swift-blackjack-labTests' do
     inherit! :search_paths
@@ -17,4 +17,12 @@ target 'swift-blackjack-lab' do
     testing_pods
   end
 
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+        end
+    end
 end
