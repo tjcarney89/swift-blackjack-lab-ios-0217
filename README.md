@@ -54,7 +54,7 @@ You may deselect the target membership of the testing files in order to work on 
 4. Write a `drawCard()` function to return the next card. It should remove that card from the remaining cards and add it to the dealt cards.
 
 5. Write a `shuffle()` method that gathers up the dealt cards and randomizes all 52 cards.  
-**Hint:** *The* `arc4random_uniform()` *C function is accessible in Swift also.*
+**Hint:** *The* `arc4random_uniform()` *C function is accessible in Swift.*
 
 
 ### `Player.swift`
@@ -85,7 +85,7 @@ You may deselect the target membership of the testing files in order to work on 
 
 8. Make `mayHit` a calculated property that determines whether the player may take a new card (if the hand is not busted, is not a blackjack, and if the player has not stayed).
 
-9. Write a method called `canPlaceBet()` which takes an unsigned integer argument and returns a boolean of whether or not the player can afford the submitted bet.
+9. Write a method called `canPlace(bet:)` which takes an unsigned integer argument and returns a boolean of whether or not the player can afford the submitted bet.
 
 10. Write two methods called `didWin()` and `didLose()` which both take an unsigned integer for the value of the bet and appropriately update the value of `tokens`.
 
@@ -106,7 +106,7 @@ You may deselect the target membership of the testing files in order to work on 
   * an unsigned integer called `bet` which starts at zero.  
 **Note:** *In this console-version of the game, since we don't have a user interface for providing input, we're going to use the `House` class's `mustHit` method for the player's decision-making also.*
 
-3. Write a method called `placeBet()` which takes an unsigned integer argument and returns a boolean of whether or not the house and the player can both afford the submitted bet. If they can, this method should record the value of the bet being placed.
+3. Write a method called `place(bet:)` which takes an unsigned integer argument and returns a boolean of whether or not the house and the player can both afford the submitted bet. If they can, this method should record the value of the bet being placed.
 
 4. Write a method called `deal()` that deals a new round, giving two new cards each to the player and to the house.
 
@@ -128,7 +128,7 @@ You may deselect the target membership of the testing files in order to work on 
 
 1. In `AppDelegate.swift`, add a `Dealer` property called `dealer`.
 
-2. Write a method called `playBlackjack()` that calls the different steps in the game in order. The player and house should be offered a maximum of five cards total.
+2. Write a method called `playBlackjack(withBet:)` that calls the different steps in the game in order. The player and house should be offered a maximum of five cards total.
 
 3. Add `print()` statements utilizing the `description` properties that you wrote in order to build a readout of the game as it progresses.
 
