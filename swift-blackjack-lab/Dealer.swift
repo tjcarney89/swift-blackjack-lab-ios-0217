@@ -8,8 +8,9 @@ class Dealer {
     let player = House(name: "Player")
     var bet: UInt = 0
     
-    func placeBet(bet: UInt) -> Bool {
-        if house.canPlaceBet(bet) && player.canPlaceBet(bet) {
+    
+    func place(bet bet: UInt) -> Bool {
+        if house.canPlace(bet: bet) && player.canPlace(bet: bet) {
             self.bet = bet
             return true
         } else {
@@ -31,7 +32,7 @@ class Dealer {
         }
     }
     
-    func turn(house: House) {
+    func turn(house house: House) {
         if house.mayHit {
             print("\(house.name)'s turn:")
             if house.mustHit {
@@ -85,12 +86,12 @@ class Dealer {
                 return "Push!"
             */
             case "house":
-                house.didWin(bet)
-                player.didLose(bet)
+                house.didWin(bet: bet)
+                player.didLose(bet: bet)
                 return "House wins \(bet)!"
             case "player":
-                house.didLose(bet)
-                player.didWin(bet)
+                house.didLose(bet: bet)
+                player.didWin(bet: bet)
                 return "Player wins \(bet)!"
             case "no":
                 return "There is not a winner yet."

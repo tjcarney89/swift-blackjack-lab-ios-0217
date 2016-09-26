@@ -3,8 +3,8 @@
 import Foundation
 
 class Deck {
-    private var remainingCards : [Card]
-    private var dealtCards : [Card]
+    fileprivate var remainingCards : [Card]
+    fileprivate var dealtCards : [Card]
     
     var description: String { return self.getDescription() }
     
@@ -20,12 +20,12 @@ class Deck {
         dealtCards = []
     }
     
-    private func getDescription() -> String {
+    fileprivate func getDescription() -> String {
         var description = "Deck"
         description += "\n  Cards Remaining: "
-        description += descriptionForCardArray(remainingCards)
+        description += descriptionFor(cardArray: remainingCards)
         description += "\n  Cards Dealt: "
-        description += descriptionForCardArray(dealtCards)
+        description += descriptionFor(cardArray: dealtCards)
         
         return description
     }
@@ -37,13 +37,14 @@ class Deck {
         return card
     }
     
+    
     func shuffle() {
-        self.remainingCards.appendContentsOf(dealtCards)
+        self.remainingCards.append(contentsOf: dealtCards)
         self.dealtCards.removeAll()
         self.randomize()
     }
     
-    private func randomize() {
+    fileprivate func randomize() {
         var shuffledCards : [Card] = []
         
         let limit = remainingCards.count
@@ -51,7 +52,7 @@ class Deck {
         for _ in 0...limit-1 {
             let randomIndex = Int(arc4random_uniform(UInt32(remainingCards.count)))
             
-            let randomCard = remainingCards.removeAtIndex(randomIndex)
+            let randomCard = remainingCards.remove(at: randomIndex)
             shuffledCards.append(randomCard)
         }
         

@@ -5,8 +5,8 @@ import Foundation
 class Card {
     let suit : String
     let rank : String
-    private(set) var cardLabel = ""
-    private(set) var cardValue: UInt = 0
+    fileprivate(set) var cardLabel = ""
+    fileprivate(set) var cardValue: UInt = 0
     
     var description: String { return cardLabel }
     
@@ -24,8 +24,8 @@ class Card {
     class func validRanks() -> [String] {
         return ["A", "2", "3" ,"4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     }
-
-    private func determineCardValue(rank: String) -> UInt {
+    
+    fileprivate func determineCardValue(_ rank: String) -> UInt {
         switch rank {
         case "A":
             return 1
@@ -39,7 +39,7 @@ class Card {
     }
 }
 
-func descriptionForCardArray(cardArray: [Card]) -> String {
+func descriptionFor(cardArray cardArray: [Card]) -> String {
     var description = "\(cardArray.count)"
     var count = 0
     for card in cardArray {

@@ -19,10 +19,10 @@ class Player {
         self.name = name
     }
     
-    private func getDebugDescription() -> String{
+    fileprivate func getDebugDescription() -> String{
         var debug = "Player: \(name)"
         debug += "\n  cardsInHand: "
-        debug += descriptionForCardArray(cards)
+        debug += descriptionFor(cardArray: cards)
         debug += "\n  handscore: \(handscore)"
         debug += "\n    blackjack: \(blackjack)"
         debug += "\n    busted   : \(busted)"
@@ -31,7 +31,7 @@ class Player {
         return debug
     }
     
-    private func getHandscore() -> UInt {
+    fileprivate func getHandscore() -> UInt {
         var score: UInt = 0
         
         for card in cards {
@@ -43,7 +43,7 @@ class Player {
         return score
     }
     
-    private func hasAce() -> Bool {
+    fileprivate func hasAce() -> Bool {
         for card in cards {
             if card.rank == "A" {
                 return true
@@ -52,15 +52,15 @@ class Player {
         return false
     }
     
-    func canPlaceBet(bet: UInt) -> Bool {
+    func canPlace(bet bet: UInt) -> Bool {
         return tokens >= bet
     }
     
-    func didWin(bet: UInt) {
+    func didWin(bet bet: UInt) {
         tokens += bet
     }
     
-    func didLose(bet: UInt) {
+    func didLose(bet bet: UInt) {
         tokens -= bet
     }
     

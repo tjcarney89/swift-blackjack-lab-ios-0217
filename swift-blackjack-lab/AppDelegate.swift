@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let dealer = Dealer()
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         /**
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(house.description)
         }
         
-        self.playBlackjack(20)
+        self.playBlackjack(withBet: 20)
         
         // Do not alter
         return true  //
@@ -55,12 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /**
      
-     * Write your playBlackjack method in here
+     * Write your playBlackjack(withBet:) method in here
      
      */
     
-    func playBlackjack(bet: UInt) {
-        let goodBet = dealer.placeBet(bet)
+    func playBlackjack(withBet bet: UInt) {
+        let goodBet = dealer.place(bet: bet)
         if !goodBet {
             return
         }
@@ -72,9 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(dealer.player.description)
         
         for _ in 2...4 {
-            dealer.turn(dealer.player)
+            dealer.turn(house: dealer.player)
             if !dealer.player.busted {
-                dealer.turn(dealer.house)
+                dealer.turn(house: dealer.house)
             }
         }
         
