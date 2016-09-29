@@ -49,7 +49,7 @@ class Deck {
         
         let limit = remainingCards.count
         
-        for _ in 0...limit-1 {
+        for _ in 0..<limit {
             let randomIndex = Int(arc4random_uniform(UInt32(remainingCards.count)))
             
             let randomCard = remainingCards.remove(at: randomIndex)
