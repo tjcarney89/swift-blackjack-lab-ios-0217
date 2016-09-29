@@ -31,16 +31,18 @@ class DealerSpec: QuickSpec {
                 
                 it("should set the dealer's bet property to 10 when the value of the bet parameter is 10") {
                     let bet : UInt = 10
-                    dealer.place(bet: bet)
-                    
-                    expect(dealer.bet).to(equal(bet))
+                    if dealer.place(bet: bet) {
+                        
+                        expect(dealer.bet).to(equal(bet))
+                    }
                 }
                 
                 it("should set the dealer's bet property to 20 when the value of the bet parameter is 20") {
                     let bet : UInt = 20
-                    dealer.place(bet: bet)
-                    
-                    expect(dealer.bet).to(equal(bet))
+                    if dealer.place(bet: bet) {
+                        
+                        expect(dealer.bet).to(equal(bet))
+                    }
                 }
                 
                 it("should return false if the bet exceeds the player's tokens") {
@@ -276,7 +278,7 @@ class DealerSpec: QuickSpec {
                     
                     let bet: UInt = 20
                     dealer.bet = bet
-                    dealer.award()
+                    print(dealer.award())
                     
                     expect(dealer.player.tokens).to(equal(playerTokensStarting + bet))
                     expect(dealer.house.tokens).to(equal(houseTokensStarting - bet))
@@ -298,7 +300,7 @@ class DealerSpec: QuickSpec {
                     
                     let bet: UInt = 20
                     dealer.bet = bet
-                    dealer.award()
+                    print(dealer.award())
                     
                     expect(dealer.house.tokens).to(equal(houseTokensStarting + bet))
                     expect(dealer.player.tokens).to(equal(playerTokensStarting - bet))
@@ -322,7 +324,7 @@ class DealerSpec: QuickSpec {
                     
                     let bet: UInt = 20
                     dealer.bet = bet
-                    dealer.award()
+                    print(dealer.award())
                     
                     expect(dealer.player.tokens).to(equal(playerTokensStarting))
                     expect(dealer.house.tokens).to(equal(houseTokensStarting))

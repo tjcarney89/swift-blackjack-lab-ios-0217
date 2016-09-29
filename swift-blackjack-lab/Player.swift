@@ -52,15 +52,15 @@ class Player {
         return false
     }
     
-    func canPlace(bet bet: UInt) -> Bool {
+    func canPlace(bet: UInt) -> Bool {
         return tokens >= bet
     }
     
-    func didWin(bet bet: UInt) {
+    func didWin(bet: UInt) {
         tokens += bet
     }
     
-    func didLose(bet bet: UInt) {
+    func didLose(bet: UInt) {
         tokens -= bet
     }
     

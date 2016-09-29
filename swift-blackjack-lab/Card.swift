@@ -39,7 +39,7 @@ class Card {
     }
 }
 
-func descriptionFor(cardArray cardArray: [Card]) -> String {
+func descriptionFor(cardArray: [Card]) -> String {
     var description = "\(cardArray.count)"
     var count = 0
     for card in cardArray {
@@ -51,4 +51,3 @@ func descriptionFor(cardArray cardArray: [Card]) -> String {
     }
     return description
 }
-
