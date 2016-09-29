@@ -33,8 +33,9 @@ You may deselect the target membership of the testing files in order to work on 
 1. Create a `Card` class. It will need the following properties:
   * `suit`, a string,
   * `rank`, a string,
-  * `cardLabel`, a string, and
-  * `cardValue`, an unsigned integer.
+  * `cardLabel`, a string,
+  * `cardValue`, an unsigned integer, and
+  * `description`, a string that is simply a calculated property which returns the value stored in `cardLabel`.
 
 2. Write an initializer for `Card` that takes two arguments for `suit` and `rank`.
   * It should also set the `cardLabel` property to string containing both the suit and the rank in the form of `♠︎A` (for the Ace of Spades).
@@ -42,18 +43,23 @@ You may deselect the target membership of the testing files in order to work on 
 
 3. Set up two class methods called `validSuits` and `validRanks` that return arrays containing the four suit icons and the thirteen string representations of the ranks (Ace through King).
 
+4. Write a function called `determineCardValue(_:)` which takes a card's `rank` as a string and returns a unsigned integer. Change your initializer to use this function in setting the value for the card being initialized.
+**Hint:** *Use a switch statement to return the right value based on rank.*
+
+5. Create a global function outside the end of the class called `descriptionFor(cardArray:)`. This should take in an array of `Card` objects and return a single string of all the `cardLabels` in the array, sorted by suit and rank, with each suit on a new line.
+
 ### `Deck.swift`
 
 1. Create a `Deck` class. It should have two private array properties for holding cards: one for holding the remaining (undealt) cards, and the other for holding the dealt cards. The test file cannot see them so name them yourself.
 
 2. Write an initializer that generates the 52 unique cards required for modeling a standard 52-card deck. It should hold them in the array of cards that can be dealt.
 
-3. Add a `description` string property that can be used to print information regarding the cards to the console. This string will need to contain information about the remaining cards and dealt cards.  
-**Top-tip:** *Set this up as a calculated property that calls a private method which returns a string.*
+3. Add a `description` string property that can be used to print information regarding the cards to the console. This string will need to contain information about the remaining cards and dealt cards.
+**Top-tip:** *Set this up as a calculated property that calls a private method which returns a string. Use the `descriptionFor(cardArray:)` method from Card.swift to add detail to this description.*
 
 4. Write a `drawCard()` function to return the next card. It should remove that card from the remaining cards and add it to the dealt cards.
 
-5. Write a `shuffle()` method that gathers up the dealt cards and randomizes all 52 cards.  
+5. Write a `shuffle()` method that gathers up the dealt cards and randomizes all 52 cards. These randomized cards should be returned to your array of undealt cards.
 **Hint:** *The* `arc4random_uniform()` *C function is accessible in Swift.*
 
 
