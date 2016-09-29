@@ -39,13 +39,13 @@ class PlayerSpec: QuickSpec {
                 it("returns a readout of the Player instance") {
                     let description = player.description
                     
-                    expect(description.lowercaseString).to(contain("player"))
-                    expect(description.lowercaseString).to(contain("cards"))
-                    expect(description.lowercaseString).to(contain("handscore"))
-                    expect(description.lowercaseString).to(contain("blackjack"))
-                    expect(description.lowercaseString).to(contain("busted"))
-                    expect(description.lowercaseString).to(contain("stayed"))
-                    expect(description.lowercaseString).to(contain("tokens"))
+                    expect(description.lowercased()).to(contain("player"))
+                    expect(description.lowercased()).to(contain("cards"))
+                    expect(description.lowercased()).to(contain("handscore"))
+                    expect(description.lowercased()).to(contain("blackjack"))
+                    expect(description.lowercased()).to(contain("busted"))
+                    expect(description.lowercased()).to(contain("stayed"))
+                    expect(description.lowercased()).to(contain("tokens"))
                 }
             }
             
@@ -231,12 +231,12 @@ class PlayerSpec: QuickSpec {
             
             describe("canPlaceBet") {
                 it("returns true if the tokens is equal to or greater than the bet") {
-                    expect(player.canPlaceBet(10)).to(beTrue())
-                    expect(player.canPlaceBet(100)).to(beTrue())
+                    expect(player.canPlace(bet: 10)).to(beTrue())
+                    expect(player.canPlace(bet: 100)).to(beTrue())
                 }
                 
                 it("returns false if the tokens is less than the bet") {
-                    expect(player.canPlaceBet(101)).to(beFalse())
+                    expect(player.canPlace(bet: 101)).to(beFalse())
                 }
             }
             
@@ -244,7 +244,7 @@ class PlayerSpec: QuickSpec {
                 it("should add 10 to the tokens when the bet is 10") {
                     let tokens = player.tokens
                     let bet: UInt = 10
-                    player.didWin(bet)
+                    player.didWin(bet: bet)
                     
                     expect(player.tokens).to(equal(tokens + bet))
                 }
@@ -252,7 +252,7 @@ class PlayerSpec: QuickSpec {
                 it("should add 20 to the tokens when the bet is 20") {
                     let tokens = player.tokens
                     let bet: UInt = 20
-                    player.didWin(bet)
+                    player.didWin(bet: bet)
                     
                     expect(player.tokens).to(equal(tokens + bet))
                 }
@@ -262,7 +262,7 @@ class PlayerSpec: QuickSpec {
                 it("should subtract 10 from the tokens when the bet is 10") {
                     let tokens = player.tokens
                     let bet: UInt = 10
-                    player.didLose(bet)
+                    player.didLose(bet: bet)
                     
                     expect(player.tokens).to(equal(tokens - bet))
                 }
@@ -270,7 +270,7 @@ class PlayerSpec: QuickSpec {
                 it("should subract 20 from the tokens when the bet is 20") {
                     let tokens = player.tokens
                     let bet: UInt = 20
-                    player.didLose(bet)
+                    player.didLose(bet: bet)
                     
                     expect(player.tokens).to(equal(tokens - bet))
                 }

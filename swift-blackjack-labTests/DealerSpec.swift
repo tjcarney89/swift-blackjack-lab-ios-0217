@@ -22,37 +22,39 @@ class DealerSpec: QuickSpec {
                 dealer = Dealer()
             })
             
-            describe("placeBet") {
+            describe("place(bet:)") {
                 it("should return true if the house and player can afford a bet of 10") {
                     let bet : UInt = 10
                     
-                    expect(dealer.placeBet(bet)).to(beTrue())
+                    expect(dealer.place(bet: bet)).to(beTrue())
                 }
                 
                 it("should set the dealer's bet property to 10 when the value of the bet parameter is 10") {
                     let bet : UInt = 10
-                    dealer.placeBet(bet)
-                    
-                    expect(dealer.bet).to(equal(bet))
+                    if dealer.place(bet: bet) {
+                        
+                        expect(dealer.bet).to(equal(bet))
+                    }
                 }
                 
                 it("should set the dealer's bet property to 20 when the value of the bet parameter is 20") {
                     let bet : UInt = 20
-                    dealer.placeBet(bet)
-                    
-                    expect(dealer.bet).to(equal(bet))
+                    if dealer.place(bet: bet) {
+                        
+                        expect(dealer.bet).to(equal(bet))
+                    }
                 }
                 
                 it("should return false if the bet exceeds the player's tokens") {
                     let bet = dealer.player.tokens + 1
                     
-                    expect(dealer.placeBet(bet)).to(beFalse())
+                    expect(dealer.place(bet: bet)).to(beFalse())
                 }
                 
                 it("should return false if the bet exceeds the house's tokens") {
                     let bet = dealer.house.tokens + 1
                     
-                    expect(dealer.placeBet(bet)).to(beFalse())
+                    expect(dealer.place(bet: bet)).to(beFalse())
                 }
             }
             
@@ -112,7 +114,7 @@ class DealerSpec: QuickSpec {
                     dealer.house.cards.append(queenOfHearts)
                     dealer.house.cards.append(tenOfDiamonds)
                     dealer.house.cards.append(twoOfClubs)
-                    dealer.turn(dealer.house)
+                    dealer.turn(house: dealer.house)
                     
                     expect(dealer.house.busted).to(beTrue())
                     expect(dealer.house.cards.count).to(equal(3))
@@ -120,7 +122,7 @@ class DealerSpec: QuickSpec {
                 
                 it("should not offer the house a card if the house has stayed") {
                     dealer.house.stayed = true
-                    dealer.turn(dealer.house)
+                    dealer.turn(house: dealer.house)
                     
                     expect(dealer.house.cards.count).to(equal(0))
                 }
@@ -128,7 +130,7 @@ class DealerSpec: QuickSpec {
                 it("should not offer the house a card if the house has a blackjack") {
                     dealer.house.cards.append(queenOfHearts)
                     dealer.house.cards.append(aceOfSpades)
-                    dealer.turn(dealer.house)
+                    dealer.turn(house: dealer.house)
                     
                     expect(dealer.house.blackjack).to(beTrue())
                     expect(dealer.house.cards.count).to(equal(2))
@@ -137,7 +139,7 @@ class DealerSpec: QuickSpec {
                 it("should not give the house a card if the house must stay") {
                     dealer.house.cards.append(tenOfDiamonds)
                     dealer.house.cards.append(sevenOfClubs)
-                    dealer.turn(dealer.house)
+                    dealer.turn(house: dealer.house)
                     
                     expect(dealer.house.cards.count).to(equal(2))
                 }
@@ -145,7 +147,7 @@ class DealerSpec: QuickSpec {
                 it("should give the house a card if the house must hit") {
                     dealer.house.cards.append(tenOfDiamonds)
                     dealer.house.cards.append(sixOfClubs)
-                    dealer.turn(dealer.house)
+                    dealer.turn(house: dealer.house)
                     
                     expect(dealer.house.cards.count).to(equal(3))
                 }
@@ -276,7 +278,7 @@ class DealerSpec: QuickSpec {
                     
                     let bet: UInt = 20
                     dealer.bet = bet
-                    dealer.award()
+                    print(dealer.award())
                     
                     expect(dealer.player.tokens).to(equal(playerTokensStarting + bet))
                     expect(dealer.house.tokens).to(equal(houseTokensStarting - bet))
@@ -288,8 +290,8 @@ class DealerSpec: QuickSpec {
                     
                     let message = dealer.award()
                     
-                    expect(message.lowercaseString).to(contain("player"))
-                    expect(message.lowercaseString).to(contain("wins"))
+                    expect(message.lowercased()).to(contain("player"))
+                    expect(message.lowercased()).to(contain("wins"))
                 }
                 
                 it("should award the bet to the house's tokens when the house wins") {
@@ -298,7 +300,7 @@ class DealerSpec: QuickSpec {
                     
                     let bet: UInt = 20
                     dealer.bet = bet
-                    dealer.award()
+                    print(dealer.award())
                     
                     expect(dealer.house.tokens).to(equal(houseTokensStarting + bet))
                     expect(dealer.player.tokens).to(equal(playerTokensStarting - bet))
@@ -310,8 +312,8 @@ class DealerSpec: QuickSpec {
                     
                     let message = dealer.award()
                     
-                    expect(message.lowercaseString).to(contain("house"))
-                    expect(message.lowercaseString).to(contain("wins"))
+                    expect(message.lowercased()).to(contain("house"))
+                    expect(message.lowercased()).to(contain("wins"))
                 }
                 
                 it("should not award the bet if the game is not over") {
@@ -322,7 +324,7 @@ class DealerSpec: QuickSpec {
                     
                     let bet: UInt = 20
                     dealer.bet = bet
-                    dealer.award()
+                    print(dealer.award())
                     
                     expect(dealer.player.tokens).to(equal(playerTokensStarting))
                     expect(dealer.house.tokens).to(equal(houseTokensStarting))
@@ -336,8 +338,8 @@ class DealerSpec: QuickSpec {
                     
                     let message = dealer.award()
                     
-                    expect(message.lowercaseString).to(contain("no"))
-                    expect(message.lowercaseString).to(contain("winner"))
+                    expect(message.lowercased()).to(contain("no"))
+                    expect(message.lowercased()).to(contain("winner"))
                 }
             }
         }
