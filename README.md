@@ -55,7 +55,7 @@ You may deselect the target membership of the testing files in order to work on 
 2. Write an initializer that generates the 52 unique cards required for modeling a standard 52-card deck. It should hold them in the array of cards that can be dealt.
 
 3. Add a `description` string property that can be used to print information regarding the cards to the console. This string will need to contain information about the remaining cards and dealt cards.
-**Top-tip:** *Set this up as a calculated property that calls a private method which returns a string. Use the `descriptionFor(cardArray:)` method from Card.swift to add detail to this description.*
+**Top-tip:** *Use the global `descriptionFor(cardArray:)` method from Card.swift to add detail to this description.*
 
 4. Write a `drawCard()` function to return the next card. It should remove that card from the remaining cards and add it to the dealt cards.
 
