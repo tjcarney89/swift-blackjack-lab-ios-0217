@@ -33,7 +33,7 @@ class DeckSpec: QuickSpec {
                 it("should return the King of Clubs from a fresh deck") {
                     let card = deck.drawCard()
                     
-                    expect(card.cardLabel).to(match("♣︎K"))
+                    expect(card.cardLabel).to(match("♣️K"))
                 }
             }
             
